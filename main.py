@@ -37,8 +37,10 @@ async def on_message(message):
         #goodrole = discord.utils.get(testserver.roles, name="goodrole")
         goodrole = discord.utils.get(testserver.roles, id="481172194903195668")
         doomsday = testserver.get_member('90033106198761472')
-        await asyncio.sleep(random.random()*3)
+        await asyncio.sleep(random.random())
         if discord.utils.get(doomsday.roles, id="410209923964731393") is None:
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random()*3)
             msg = 'Moving to mutes'.format(message)
             await client.send_message(message.channel, msg)
             print ('adding {0} to role {1}'.format(doomsday, badrole))
@@ -48,7 +50,8 @@ async def on_message(message):
             # await client.remove_roles(doomsday, goodrole)
             #loop.call_later(10, unmute, loop2)
             await asyncio.sleep(300) # wait 5 minutes, then unmute
-            await asyncio.sleep(random.random()*3)
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random())
             msg = 'Unmuting'.format(message)
             await client.send_message(message.channel, msg)
             # print ('adding {0} to role {1}'.format(doomsday, goodrole))
@@ -77,6 +80,8 @@ async def on_message(message):
             newwords = ["I'll", firstword, "your", secondword]
             remmessage = ' '.join(newwords)
             print (newwords)
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random()*3)
             await client.send_message(message.channel, remmessage)
 
     # if the message has more than 3 words and a 1/100 chance
@@ -89,6 +94,8 @@ async def on_message(message):
             words[wordToReplace] = 'butt'
             buttmessage = ' '.join(words)
             print (buttmessage)
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random()*3)
             await client.send_message(message.channel, buttmessage)
             
     # if the message has more than 3 words and a 1/100 chance
@@ -106,6 +113,8 @@ async def on_message(message):
                 xwords = ["You're", "a", wordgot]
             xmessage = ' '.join(xwords)
             print (xmessage)
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random()*3)
             await client.send_message(message.channel, xmessage)
             
             
