@@ -20,6 +20,7 @@ client = discord.Client()
 async def on_message(message):
 
     #print (message.server)
+
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
@@ -28,14 +29,6 @@ async def on_message(message):
     #testserver = discord.Server(id='481172019518373899')
     #print ("Server:")
     #print (testserver)
-
-   # headcrabs = {
-   #            "server": discord.Server(id='147850792626290688'),
-   #            "role": discord.Role(server=discord.Server(id='147850792626290688'), id='232961867448975360'),
-   #            "permissions": discord.Permissions(send_messages=False)
-   #             }
-   
-    #role = discord.utils.get(discord.Server(id='147850792626290688').roles, name="mutes")
 
     if message.content.startswith('<:fendi_no'):
         testserver = message.server
@@ -54,7 +47,7 @@ async def on_message(message):
             # print ('removing {0} from role {1}'.format(doomsday, goodrole))
             # await client.remove_roles(doomsday, goodrole)
             #loop.call_later(10, unmute, loop2)
-            await asyncio.sleep(300) # wait 10 seconds, then unmute
+            await asyncio.sleep(300) # wait 5 minutes, then unmute
             await asyncio.sleep(random.random()*3)
             msg = 'Unmuting'.format(message)
             await client.send_message(message.channel, msg)
@@ -65,7 +58,7 @@ async def on_message(message):
             await client.remove_roles(doomsday, badrole)
             
 
-    # if the message has more than 5 words and a 1/100 chance
+    # if the message has more than 5 words and a 1/42 chance
     if len(message.content.split(' ')) > 5 and random.randint(1,42) == 8:
             # rembot resurrection 
             #print ('Test')
@@ -87,8 +80,8 @@ async def on_message(message):
             await client.send_message(message.channel, remmessage)
 
     # if the message has more than 3 words and a 1/100 chance
-    if len(message.content.split(' ')) > 3 and random.randint(1,100) == 25:
-    #if str(message.server) == 'Paul_testserver' and len(message.content.split(' ')) > 3:
+    elif len(message.content.split(' ')) > 3 and random.randint(1,100) == 25:
+    #elif str(message.server) == 'Paul_testserver' and len(message.content.split(' ')) > 3:
             # buttbot resurrection 
             words = message.content.split(' ')
             print (words)
@@ -121,11 +114,7 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
-    #loop.call_soon(hello_world, loop)
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
+    print ('Logged in as: {0} , {1}'.format(client.user.name, client.user.id))
     print(discord.version_info)
 
 client.run(config.discord_bot_token)
