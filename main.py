@@ -92,14 +92,18 @@ async def on_message(message):
             await client.send_message(message.channel, buttmessage)
             
     # if the message has more than 3 words and a 1/100 chance
-    elif len(message.content.split(' ')) > 3 and random.randint(1,100) == 25:
+    elif len(message.content.split(' ')) > 3 and random.randint(1,69) == 33:
     #elif str(message.server) == 'Paul_testserver' and len(message.content.split(' ')) > 3:
             # "You're a X" thing 
             words = message.content.split(' ')
             print (words)
             wordToGet = math.floor(random.random() * len(words))
             wordgot = words[wordToGet]
-            xwords = ["You're", "a", wordgot]
+            if wordgot[0] in {'a', 'e', 'i', 'o', 'u'}:
+                xwords = ["You're", "an", wordgot]
+                #print (xwords)
+            else:
+                xwords = ["You're", "a", wordgot]
             xmessage = ' '.join(xwords)
             print (xmessage)
             await client.send_message(message.channel, xmessage)
