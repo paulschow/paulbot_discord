@@ -82,7 +82,6 @@ async def on_message(message):
 
     # if the message has more than 3 words and a 1/100 chance
     elif len(message.content.split(' ')) > 3 and random.randint(1,100) == 25:
-    #elif str(message.server) == 'Paul_testserver' and len(message.content.split(' ')) > 3:
             # buttbot resurrection 
             # replaces one word in a message with butt
             words = message.content.split(' ')
