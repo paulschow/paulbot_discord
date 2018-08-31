@@ -36,7 +36,15 @@ async def on_message(message):
         badrole = discord.utils.get(testserver.roles, id="410209923964731393")
         #goodrole = discord.utils.get(testserver.roles, name="goodrole")
         goodrole = discord.utils.get(testserver.roles, id="481172194903195668")
-        doomsday = testserver.get_member('90033106198761472')
+        if random.randint(1,50) == 27:
+            # random chance to backfire and mute the wrong person
+            await asyncio.sleep(random.random())
+            doomsday = message.author
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random()*3)
+            await client.send_message(message.channel, 'How about I mute ' + message.author.mention + ' instead?')
+        else:
+            doomsday = testserver.get_member('90033106198761472')
         await asyncio.sleep(random.random())
         if discord.utils.get(doomsday.roles, id="410209923964731393") is None:
             await client.send_typing(message.channel)
@@ -60,6 +68,8 @@ async def on_message(message):
             print ('removing {0} from role {1}'.format(doomsday, badrole))
             await client.remove_roles(doomsday, badrole)
             
+
+
 
     # if the message has more than 5 words and a 1/42 chance
     if len(message.content.split(' ')) > 5 and random.randint(1,42) == 8:
