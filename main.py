@@ -39,7 +39,7 @@ async def on_message(message):
                 await client.send_typing(message.channel)
                 await asyncio.sleep(random.random()*2)
                 await client.send_message(message.channel, 'How about I mute ' + message.author.mention + ' instead?')
-            elif random.randint(1,2) == 2 andmessage.author.id == '141046693176016896':
+            elif random.randint(1,2) == 2 and message.author.id == '141046693176016896':
                 # 50% chance to mute walt
                 await asyncio.sleep(random.random())
                 usertomute = message.author
