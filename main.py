@@ -23,15 +23,16 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-
     if message.content.startswith('<:fendi_no'):
         muterole = discord.utils.get(message.server.roles, id="410209923964731393")
         fendiuserid = message.server.get_member('90033106198761472')
         await asyncio.sleep(random.random())
         # don't do anything if fendi is already muted
         if discord.utils.get(fendiuserid.roles, id="410209923964731393") is None:
-            if random.randint(1,50) == 27:
+            if random.randint(1,50) == 27 and message.author.id != '147851234328444929' and message.author.id != '90033106198761472' and message.author.id != '230883507243712513' and message.author.id != '108658728194019328':
                 # random chance to backfire and mute the wrong person
+                # but don't do it to me, fendi, DF, or sol
+                #TODO clean this up lmao
                 await asyncio.sleep(random.random())
                 usertomute = message.author
                 await client.send_typing(message.channel)
@@ -59,8 +60,8 @@ async def on_message(message):
 
 
 
-    # if the message has more than 5 words and a 1/42 chance
-    if len(message.content.split(' ')) > 5 and random.randint(1,42) == 8:
+    # if the message has more than 5 words and a 1/69 chance
+    if len(message.content.split(' ')) > 5 and random.randint(1,69) == 8:
             # rembot resurrection
             # takes two words and puts them in an I'll X your Y format
             words = message.content.split(' ')
@@ -73,11 +74,17 @@ async def on_message(message):
                word2ToReplace = word2ToReplace - 1
             firstword = words[wordToReplace]
             secondword = words[word2ToReplace]
+            # don't even bother if the words are less than or equal to 2 letters
+            if len(firstword) <= 2 or len(secondword) <= 2:
+                return
+            # remove plurals (100% guaranteed to work in English)
+            if firstword.endswith("s"):
+                firstword = firstword[:-1]
             newwords = ["I'll", firstword, "your", secondword]
             remmessage = ' '.join(newwords)
             print (newwords)
             await client.send_typing(message.channel)
-            await asyncio.sleep(random.random()*3)
+            await asyncio.sleep(random.random()*2)
             await client.send_message(message.channel, remmessage)
 
     # if the message has more than 3 words and a 1/100 chance
@@ -94,13 +101,19 @@ async def on_message(message):
             await asyncio.sleep(random.random()*3)
             await client.send_message(message.channel, buttmessage)
             
-    # if the message has more than 3 words and a 1/100 chance
-    elif len(message.content.split(' ')) > 3 and random.randint(1,69) == 33:
+    # if the message has more than 3 words and a 1/96 chance
+    elif len(message.content.split(' ')) > 3 and random.randint(1,96) == 33:
             # "You're a X" thing 
             words = message.content.split(' ')
             #print (words)
             wordToGet = math.floor(random.random() * len(words))
             wordgot = words[wordToGet]
+            # don't even bother if the word is less than or equal to 2 letters
+            if len(wordgot) <= 2:
+                return
+            # remove plurals (100% guaranteed to work in English)
+            if wordgot.endswith("s"):
+                wordgot = wordgot[:-1]
             # use a/an correctly
             if wordgot[0] in {'a', 'e', 'i', 'o', 'u'}:
                 xwords = ["You're", "an", wordgot]
@@ -109,7 +122,7 @@ async def on_message(message):
             xmessage = ' '.join(xwords)
             #print (xmessage)
             await client.send_typing(message.channel)
-            await asyncio.sleep(random.random()*3)
+            await asyncio.sleep(random.random()*2)
             await client.send_message(message.channel, xmessage)
             
             
@@ -124,11 +137,13 @@ async def on_message(message):
 # DF test ID = 230883507243712513
 # grant = 137896130020114432
 # lee = 201937511746895875
+# me = 147851234328444929
 
 # https://discordapp.com/oauth2/authorize?client_id=234158064167682050&scope=bot
 # test server roles 'roles': ['481172194903195668', '481172122719223830']
 # muterole = 481172122719223830
 # goodrole = 481172194903195668
+
 
 #<:fendi_no:481185602017165322>
 
