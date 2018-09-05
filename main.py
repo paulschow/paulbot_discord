@@ -43,8 +43,8 @@ async def on_message(message):
                 await client.send_typing(message.channel)
                 await asyncio.sleep(random.random()*3)
                 msg = 'Moving to mutes'.format(message)
-                
-            await client.send_message(message.channel, msg)
+                await client.send_message(message.channel, msg)
+
             print ('adding {0} to role {1}'.format(usertomute, muterole))
             await client.add_roles(usertomute, muterole)
             await asyncio.sleep(1)
