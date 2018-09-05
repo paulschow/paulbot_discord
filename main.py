@@ -23,7 +23,8 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('<:fendi_no'):
+    #if message.content.startswith('<:fendi_no'):
+    if 'fendi_no' in message.content:
         muterole = discord.utils.get(message.server.roles, id="410209923964731393")
         fendiuserid = message.server.get_member('90033106198761472')
         await asyncio.sleep(random.random())
@@ -36,12 +37,19 @@ async def on_message(message):
                 await asyncio.sleep(random.random())
                 usertomute = message.author
                 await client.send_typing(message.channel)
-                await asyncio.sleep(random.random()*3)
+                await asyncio.sleep(random.random()*2)
+                await client.send_message(message.channel, 'How about I mute ' + message.author.mention + ' instead?')
+            elif random.randint(1,2) == 2 andmessage.author.id == '141046693176016896':
+                # 50% chance to mute walt
+                await asyncio.sleep(random.random())
+                usertomute = message.author
+                await client.send_typing(message.channel)
+                await asyncio.sleep(random.random()*2)
                 await client.send_message(message.channel, 'How about I mute ' + message.author.mention + ' instead?')
             else:
                 usertomute = message.server.get_member('90033106198761472')
                 await client.send_typing(message.channel)
-                await asyncio.sleep(random.random()*3)
+                await asyncio.sleep(random.random()*2)
                 msg = 'Moving to mutes'.format(message)
                 await client.send_message(message.channel, msg)
 
