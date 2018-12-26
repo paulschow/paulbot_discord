@@ -9,6 +9,7 @@ import sys
 import random
 import math
 import config #config file that contains api keys
+import emojipastagenerator as Emojipasta
 
 #logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(level=logging.INFO)
@@ -153,6 +154,21 @@ async def on_message(message):
             await client.send_typing(message.channel)
             await asyncio.sleep(random.random()*2)
             await client.send_message(message.channel, cap_words)
+            
+            
+    # if the message has more than 3 words and a 1/64 chance
+    elif len(message.content.split(' ')) > 3 and random.randint(1,64) == 26:
+    # turns text into emojipasta
+    # copied from https://github.com/Kevinpgalligan/EmojipastaBot
+        words = message.content
+        #print (words)
+        #generator = EmojipastaGenerator.of_default_mappings()
+        generator = Emojipasta.EmojipastaGenerator.of_default_mappings()
+        emoji_words = generator.generate_emojipasta(words)
+        #print (emoji_words)
+        await client.send_typing(message.channel)
+        await asyncio.sleep(random.random())
+        await client.send_message(message.channel, emoji_words)
             
             
 # documentation
