@@ -53,7 +53,7 @@ async def on_message(message):
                 msg = 'Moving to mutes'.format(message)
                 await client.send_message(message.channel, msg)
 
-            print ('adding {0} to role {1}'.format(usertomute, muterole))
+            #print ('adding {0} to role {1}'.format(usertomute, muterole))
             await client.add_roles(usertomute, muterole)
             await asyncio.sleep(1)
             await asyncio.sleep(300) # wait 5 minutes, then unmute
@@ -62,7 +62,7 @@ async def on_message(message):
             msg = 'Unmuting'.format(message)
             await client.send_message(message.channel, msg)
             await asyncio.sleep(1)
-            print ('removing {0} from role {1}'.format(usertomute, muterole))
+            #print ('removing {0} from role {1}'.format(usertomute, muterole))
             await client.remove_roles(usertomute, muterole)
             
 
@@ -73,7 +73,7 @@ async def on_message(message):
             # rembot resurrection
             # takes two words and puts them in an I'll X your Y format
             words = message.content.split(' ')
-            print (words)
+            #print (words)
             wordToReplace = math.floor(random.random() * len(words))
             word2ToReplace = math.floor(random.random() * len(words))
             # don't use the same word twice thanks
@@ -90,7 +90,7 @@ async def on_message(message):
                 firstword = firstword[:-1]
             newwords = ["I'll", firstword, "your", secondword]
             remmessage = ' '.join(newwords)
-            print (newwords)
+            #print (newwords)
             await client.send_typing(message.channel)
             await asyncio.sleep(random.random()*2)
             await client.send_message(message.channel, remmessage)
@@ -132,6 +132,24 @@ async def on_message(message):
             await client.send_typing(message.channel)
             await asyncio.sleep(random.random()*2)
             await client.send_message(message.channel, xmessage)
+            
+            
+    # if the message has more than 3 words and a 1/104 chance
+    elif len(message.content.split(' ')) > 3 and random.randint(1,104) == 26:
+            #CaPiTaLiZe EvErY OtHeR LeTtEr
+            words = message.content
+            print (words)
+            cap_words = ""
+            i = True # capitalize
+            for char in words:
+                if i:
+                    cap_words += char.upper()
+                else:
+                    cap_words += char.lower()
+                if char != ' ':
+                    i = not i
+            print (cap_words)
+            await client.send_message(message.channel, cap_words)
             
             
 # documentation
