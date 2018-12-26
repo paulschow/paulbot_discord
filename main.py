@@ -25,6 +25,7 @@ async def on_message(message):
 
     #if message.content.startswith('<:fendi_no'):
     if 'fendi_no' in message.content:
+    # this mutes a particular user for 5 minutes when a specific emote is used
         muterole = discord.utils.get(message.server.roles, id="410209923964731393")
         fendiuserid = message.server.get_member('90033106198761472')
         await asyncio.sleep(random.random())
@@ -138,7 +139,7 @@ async def on_message(message):
     elif len(message.content.split(' ')) > 3 and random.randint(1,104) == 26:
             #CaPiTaLiZe EvErY OtHeR LeTtEr
             words = message.content
-            print (words)
+            #print (words)
             cap_words = ""
             i = True # capitalize
             for char in words:
@@ -148,7 +149,9 @@ async def on_message(message):
                     cap_words += char.lower()
                 if char != ' ':
                     i = not i
-            print (cap_words)
+            #print (cap_words)
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random()*2)
             await client.send_message(message.channel, cap_words)
             
             
