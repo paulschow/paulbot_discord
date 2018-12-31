@@ -32,26 +32,26 @@ async def on_message(message):
         await asyncio.sleep(random.random())
         # don't do anything if fendi is already muted
         if discord.utils.get(fendiuserid.roles, id="410209923964731393") is None:
-            if random.randint(1,50) == 27 and message.author.id != '147851234328444929' and message.author.id != '90033106198761472' and message.author.id != '230883507243712513' and message.author.id != '108658728194019328':
+            if random.randint(1,10) == 27 and message.author.id != '147851234328444929' and message.author.id != '90033106198761472' and message.author.id != '230883507243712513' and message.author.id != '108658728194019328':
                 # random chance to backfire and mute the wrong person
                 # but don't do it to me, fendi, DF, or sol
                 #TODO clean this up lmao
                 await asyncio.sleep(random.random())
                 usertomute = message.author
                 await client.send_typing(message.channel)
-                await asyncio.sleep(random.random()*2)
+                await asyncio.sleep(random.random())
                 await client.send_message(message.channel, 'How about I mute ' + message.author.mention + ' instead?')
             elif random.randint(1,2) == 2 and message.author.id == '141046693176016896':
                 # 50% chance to mute walt
                 await asyncio.sleep(random.random())
                 usertomute = message.author
                 await client.send_typing(message.channel)
-                await asyncio.sleep(random.random()*2)
+                await asyncio.sleep(random.random())
                 await client.send_message(message.channel, 'How about I mute ' + message.author.mention + ' instead?')
             else:
                 usertomute = message.server.get_member('90033106198761472')
                 await client.send_typing(message.channel)
-                await asyncio.sleep(random.random()*2)
+                await asyncio.sleep(random.random())
                 msg = 'Moving to mutes'.format(message)
                 await client.send_message(message.channel, msg)
 
@@ -94,11 +94,11 @@ async def on_message(message):
             remmessage = ' '.join(newwords)
             #print (newwords)
             await client.send_typing(message.channel)
-            await asyncio.sleep(random.random()*2)
+            await asyncio.sleep(random.random())
             await client.send_message(message.channel, remmessage)
 
     # if the message has more than 3 words and a 1/100 chance
-    elif len(message.content.split(' ')) > 3 and random.randint(1,100) == 25:
+    elif (3 < len(message.content.split(' ')) < 15) and random.randint(1,100) == 25:
             # buttbot resurrection 
             # replaces one word in a message with butt
             words = message.content.split(' ')
@@ -108,7 +108,7 @@ async def on_message(message):
             buttmessage = ' '.join(words)
             #print (buttmessage)
             await client.send_typing(message.channel)
-            await asyncio.sleep(random.random()*3)
+            await asyncio.sleep(random.random())
             await client.send_message(message.channel, buttmessage)
             
     # if the message has more than 3 words and a 1/96 chance
@@ -132,12 +132,12 @@ async def on_message(message):
             xmessage = ' '.join(xwords)
             #print (xmessage)
             await client.send_typing(message.channel)
-            await asyncio.sleep(random.random()*2)
+            await asyncio.sleep(random.random())
             await client.send_message(message.channel, xmessage)
             
             
-    # if the message has more than 3 words and a 1/104 chance
-    elif len(message.content.split(' ')) > 3 and random.randint(1,104) == 26:
+    # if the message has more than 3 words and a 1/184 chance
+    elif (3 < len(message.content.split(' ')) < 15) and random.randint(1,184) == 26:
             #CaPiTaLiZe EvErY OtHeR LeTtEr
             words = message.content
             #print (words)
@@ -152,7 +152,7 @@ async def on_message(message):
                     i = not i
             #print (cap_words)
             await client.send_typing(message.channel)
-            await asyncio.sleep(random.random()*2)
+            await asyncio.sleep(random.random())
             await client.send_message(message.channel, cap_words)
             
             
