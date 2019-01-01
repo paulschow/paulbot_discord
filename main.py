@@ -10,6 +10,7 @@ import random
 import math
 import config #config file that contains api keys
 import emojipastagenerator as Emojipasta
+from PyHugeThesaurusConnector.pyhugeconnector import pyhugeconnector
 
 #logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(level=logging.INFO)
@@ -169,8 +170,44 @@ async def on_message(message):
         await client.send_typing(message.channel)
         await asyncio.sleep(random.random())
         await client.send_message(message.channel, emoji_words)
-            
-            
+
+
+
+    # if the message has more than 3 words and a 1/256 chance
+    elif len(message.content.split(' ')) > 3 and random.randint(1,256) == 128:
+    # thesaurusizer
+    # using https://github.com/tttthomasssss/PyHugeThesaurusConnector
+        # define a list of common words we don't want to replace
+        common_words = ["the","of","and","a","to","in","is","you","that","it","he","was","for","on","are","as","with","his","they","I","at","be","this","have","from","or","one","had","by","word","but","not","what","all","were","we","when","your","can","said","there","use","an","each","which","she","do","how","their","if","will","up","about","out","many","then","them","these","so","some","her","would","make","like","him","into","time","has","look","two","more","go","see","no","way","could","my","than","been","call","who","its","now","did","get","come","made","may","part","i","me","his"]
+        # I think this violates the 80 character line length limit
+        words = message.content.split(' ')
+        #print (words)
+        newwords = []
+        for i in words:
+            #print (i)
+            try:
+                if i in common_words:
+                    # don't replace word if it's commonly used
+                    #print (i + 'true')
+                    th_word = i
+                else:
+                    # replace the word with the first entry in the thesaurus
+                    th_word = (pyhugeconnector.thesaurus_entry(word=i, api_key=config.bighugelabs_apikey, pos_tag='n', ngram=1, relationship_type='syn'))[0]
+            except:
+                th_word = i
+            newwords.append(th_word)
+            #print (th_word)
+        #print (newwords)
+        if newwords == words:
+            # don't do anything if the result is the same as the input
+            return
+        else:
+            xmessage = ' '.join(newwords)
+            #print (xmessage)
+            await client.send_typing(message.channel)
+            await asyncio.sleep(random.random())
+            await client.send_message(message.channel, xmessage)
+
 # documentation
 # steamtoid server ID = 147850792626290688
 # fendi ID = 90033106198761472
